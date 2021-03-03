@@ -1,0 +1,32 @@
+#table {
+  padding: 0px;
+  margin: 0px;
+}
+.button {
+ height: 50px;
+ width: 100px;
+ font-size: 24px;
+ padding: 0px;
+ margin: 0px;
+}
+
+.div {
+  display: inline-block;
+}
+
+.over {
+  background-image: url("https://reshape.sport1.de/c/t/8C822B7F-EDB5-11E8-B08E-B8CA3A67761C/1200x630");
+  background-size: cover;
+  height: 630px;
+}
+
+.count {
+  background-color: black;
+  font-size: 80px;
+  color: aliceblue;
+}
+
+.radios {
+  background-color:rgba(0, 0, 0, 0.76);
+  color: aliceblue;
+}
