@@ -32,19 +32,7 @@ function changePoints(num, mult) {
     }
     p2throws.push(num * mult)
   }
-  document.getElementById('p1Throws').innerText = p1throws
-  document.getElementById('p2Throws').innerText = p2throws
-  let sum = [0, 0]
-  for (let i = 0; i < p1throws.length; i++) {
-    sum[0] += p1throws[i]
-  }
-  for (let i = 0; i < p2throws.length; i++) {
-    sum[0] += p2throws[i]
-  }
-  document.getElementById('p1avg').innerText = 'Player2 average: ' + sum[0] / p1throws.length
-  document.getElementById('p2avg').innerText = 'Player1 average: ' + sum[0] / p2throws.length
-
-
+  setStats()
 }
 
 function getMultiplier() {
@@ -60,6 +48,55 @@ function getMultiplier() {
   }
   return mult
 }
+
+function setStats() {
+  document.getElementById('p1Throws').innerText = p1throws
+  document.getElementById('p2Throws').innerText = p2throws
+  let sum = [0, 0]
+  for (let i = 0; i < p1throws.length; i++) {
+    sum[0] += p1throws[i]
+  }
+  for (let i = 0; i < p2throws.length; i++) {
+    sum[1] += p2throws[i]
+  }
+  document.getElementById('p1avg').innerText = 'Player2 average: ' + sum[0] / p1throws.length
+  document.getElementById('p2avg').innerText = 'Player1 average: ' + sum[1] / p2throws.length
+}
+
+document.getElementById('treble').addEventListener('change', () => {
+  if (getMultiplier() === 2 || getMultiplier() === 3) {
+    console.log('hide')
+
+    document.getElementById('25').hidden = true
+    document.getElementById('50').hidden = true
+  } else {
+    document.getElementById('25').hidden = false
+    document.getElementById('50').hidden = false
+  }
+})
+document.getElementById('double').addEventListener('change', () => {
+  if (getMultiplier() === 2 || getMultiplier() === 3) {
+    console.log('hide')
+
+    document.getElementById('25').hidden = true
+    document.getElementById('50').hidden = true
+  } else {
+    document.getElementById('25').hidden = false
+    document.getElementById('50').hidden = false
+  }
+})
+document.getElementById('single').addEventListener('change', () => {
+  if (getMultiplier() === 2 || getMultiplier() === 3) {
+    console.log('hide')
+    document.getElementById('25').hidden = true
+    document.getElementById('50').hidden = true
+  } else {
+    document.getElementById('25').hidden = false
+    document.getElementById('50').hidden = false
+  }
+})
+
+
 
 document.getElementById('1').addEventListener('click', () => {
   changePoints(1, getMultiplier())
@@ -85,3 +122,22 @@ document.getElementById('19').addEventListener('click', () => { changePoints(19,
 document.getElementById('20').addEventListener('click', () => { changePoints(20, getMultiplier()) })
 document.getElementById('25').addEventListener('click', () => { changePoints(25, getMultiplier()) })
 document.getElementById('50').addEventListener('click', () => { changePoints(50, getMultiplier()) })
+document.getElementById('undo').addEventListener('click', () => {
+  if (isP1 === true) {
+    pointsP2 += p2throws[p2throws.length - 1]
+    document.getElementById('count2').innerText = pointsP2
+    isP1 = false
+    p2throws.pop()
+  } else {
+    if (isP1 === false) {
+      pointsP1 += p1throws[p1throws.length - 1]
+      document.getElementById('count1').innerText = pointsP1
+      isP1 = true
+      p1throws.pop()
+    }
+  }
+
+  setStats()
+})
+
+
